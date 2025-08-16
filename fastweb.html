@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Giỏ hàng HACCP TCVN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 30px;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      background: #fff;
+      padding: 40px;
+      border-radius: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      max-width: 1500px;
+      margin: auto;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .info {
+      flex: 1;
+      min-width: 280px;
+      padding-right: 30px;
+    }
+    .qr-image {
+      flex: 1;
+      min-width: 280px;
+      text-align: center;
+    }
+    h1 {
+      color: #007c76;
+      margin-bottom: 10px;
+    }
+    .price {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #007c76;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background: #005f5a;
+    }
+    .qr-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    video {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 640px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .hidden {
+      display: none;
+    }
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #d9534f;
+    }
+    .success {
+      color: #28a745;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 20px;
+      }
+      .info, .qr-image {
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="info">
+      <h1>Bài giảng HACCP TCVN</h1>
+      <p class="price">Giá: <strong>599.000đ</strong></p>
+      <p>📱 Vui lòng quét mã QR bên phải để thanh toán.</p>
+
+      <div id="confirmBox">
+        <p>✅ Sau khi thanh toán, nhấn nút bên dưới để mở bài giảng:</p>
+        <button class="btn" onclick="confirmPayment()">Tôi đã thanh toán</button>
+      </div>
+
+      <div id="access" class="hidden">
+        <p class="message success">🎉 Thanh toán thành công!</p>
+        <video width="640" controls>
+          <source src="HACCP TCVN 1234.webm" type="video/webm">
+          Trình duyệt của bạn không hỗ trợ video.
+        </video>
+      </div>
+
+      <div id="warning">
+        <p class="message">❌ Bạn chưa thanh toán. Vui lòng quét mã QR để tiếp tục.</p>
+      </div>
+    </div>
+
+    <div class="qr-image">
+      <img src="qrcode.png" alt="QR thanh toán HACCP">
+      <!-- Thay link ảnh QR thật của bạn tại đây -->
+    </div>
+  </div>
+
+  <script>
+    let paid = false;
+
+    function confirmPayment() {
+      paid = true;
+      document.getElementById('access').classList.remove('hidden');
+      document.getElementById('confirmBox').classList.add('hidden');
+      document.getElementById('warning').classList.add('hidden');
+    }
+
+    window.onload = () => {
+      if (!paid) {
+        document.getElementById('warning').classList.remove('hidden');
+      }
+    };
+  </script>
+</body>
+</html>
